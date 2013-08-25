@@ -34,7 +34,6 @@ using log4net;
 using OpenMetaverse;
 using OpenMetaverse.Packets;
 using OpenSim.Framework;
-using OpenSim.Region.ClientStack.LindenUDP;
 using OpenSim.Region.Framework.Interfaces;
 using OpenSim.Region.Framework.Scenes;
 using OpenSim.Framework.Client;
@@ -411,12 +410,7 @@ namespace OpenSim.Tests.Common.Mock
         }
         public void SendMoneyBalance(UUID transaction, bool success, byte[] description, int balance)
         {
-            MoneyBalanceReplyPacket money = (MoneyBalanceReplyPacket)PacketPool.Instance.GetPacket(PacketType.MoneyBalanceReply);
-            money.MoneyData.AgentID = AgentId;
-            money.MoneyData.TransactionID = transaction;
-            money.MoneyData.TransactionSuccess = success;
-            money.MoneyData.Description = description;
-            money.MoneyData.MoneyBalance = balance;
+           
 
 
             //OutPacket(money, ThrottleOutPacketType.Task);
