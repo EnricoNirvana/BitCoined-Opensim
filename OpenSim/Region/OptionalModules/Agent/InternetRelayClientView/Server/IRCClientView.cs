@@ -39,6 +39,7 @@ using OpenMetaverse.Packets;
 using OpenSim.Framework;
 using OpenSim.Framework.Client;
 using OpenSim.Framework.Monitoring;
+using OpenSim.Region.ClientStack.LindenUDP;
 using OpenSim.Region.Framework.Scenes;
 
 namespace OpenSim.Region.OptionalModules.Agent.InternetRelayClientView.Server
@@ -573,6 +574,18 @@ namespace OpenSim.Region.OptionalModules.Agent.InternetRelayClientView.Server
             get { return "IRCd User"; }
         }
 
+        public void SendMoneyBalance(UUID transaction, bool success, byte[] description, int balance)
+        {
+        MoneyBalanceReplyPacket money = (MoneyBalanceReplyPacket)PacketPool.Instance.GetPacket(PacketType.MoneyBalanceReply);
+            money.MoneyData.AgentID = AgentId;
+            money.MoneyData.TransactionID = transaction;
+            money.MoneyData.TransactionSuccess = success;
+            money.MoneyData.Description = description;
+            money.MoneyData.MoneyBalance = balance;
+            
+
+            //OutPacket(money, ThrottleOutPacketType.Task);
+        }
         public ulong ActiveGroupPowers
         {
             get { return 0; }

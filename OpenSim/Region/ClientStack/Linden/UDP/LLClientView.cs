@@ -1600,6 +1600,19 @@ namespace OpenSim.Region.ClientStack.LindenUDP
             OutPacket(money, ThrottleOutPacketType.Task);
         }
 
+        public void SendMoneyBalance(UUID transaction, bool success, byte[] description, int balance)
+        {
+            MoneyBalanceReplyPacket money = (MoneyBalanceReplyPacket)PacketPool.Instance.GetPacket(PacketType.MoneyBalanceReply);
+            money.MoneyData.AgentID = AgentId;
+            money.MoneyData.TransactionID = transaction;
+            money.MoneyData.TransactionSuccess = success;
+            money.MoneyData.Description = description;
+            money.MoneyData.MoneyBalance = balance;
+            
+
+            OutPacket(money, ThrottleOutPacketType.Task);
+        }
+
         public void SendPayPrice(UUID objectID, int[] payPrice)
         {
             if (payPrice[0] == 0 &&

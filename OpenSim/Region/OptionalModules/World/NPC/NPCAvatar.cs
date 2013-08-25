@@ -31,6 +31,7 @@ using System.Net;
 using OpenMetaverse;
 using OpenMetaverse.Packets;
 using OpenSim.Framework;
+using OpenSim.Region.ClientStack.LindenUDP;
 using OpenSim.Region.Framework.Interfaces;
 using OpenSim.Region.Framework.Scenes;
 using OpenSim.Region.CoreModules.World.Estate;
@@ -1187,6 +1188,12 @@ namespace OpenSim.Region.OptionalModules.World.NPC
         public void SendMuteListUpdate(string filename)
         {
         }
+
+        public void SendMoneyBalance(UUID transaction, bool success, byte[] description, int balance)
+        {
+            
+        }
+
 
         public void SendPickInfoReply(UUID pickID,UUID creatorID, bool topPick, UUID parcelID, string name, string desc, UUID snapshotID, string user, string originalName, string simName, Vector3 posGlobal, int sortOrder, bool enabled)
         {

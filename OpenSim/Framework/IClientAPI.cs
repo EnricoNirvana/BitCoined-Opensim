@@ -1479,5 +1479,6 @@ namespace OpenSim.Framework
         void SendAgentTerseUpdate(ISceneEntity presence);
 
         void SendPlacesReply(UUID queryID, UUID transactionID, PlacesReplyData[] data);
+        void SendMoneyBalance(UUID transaction, bool success, byte[] description, int mMaxBalance);
     }
 }
